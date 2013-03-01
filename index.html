@@ -91,12 +91,15 @@
           </div><!--/.well -->
 
           <div class="well powered fixed">
+<h4>Powered by</h4>
 <a href="http://www.dalibo.com/"><img src="dalibo.png" alt="Dalibo" /></a>
 	  </div>
 
           <div class="well twitter fixed">
-<a href="http://www.dalibo.com/"><img src="dalibo.png" alt="Dalibo" /></a>
-          </div>
+<h4>Twitter</h4>
+        <a href="https://twitter.com/pgBadger" class="twitter-follow-button" data-show-count="false" data-dnt="true">Follow @pgBadger</a>
+<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src="//platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>  
+	</div>
 
         </div><!--/span-->
         <div class="span9">
@@ -148,10 +151,10 @@ pgBadger is a PostgreSQL log analyzer build for speed with fully detailed report
 <div class="accordion" id="accordion2">
   <div class="accordion-group">
     <div class="accordion-heading">
-      <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion2" href="#collapseOne">
+      <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion2" href="#collapse20130221">
 Version 3.1 - Feb 21, 2013</a>
 </div>
-<div id="collapseOne" class="accordion-body collapse in">
+<div id="collapse20130221" class="accordion-body collapse in">
 <div class="accordion-inner">
 <p>
 This is a quick release to fix missing reports of most frequent errors and slowest
@@ -172,9 +175,9 @@ normalized queries in previous version published yesterday.
 
 <div class="accordion-group">
     <div class="accordion-heading">
-      <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion2" href="#collapseTwo">
+      <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion2" href="#collapse20130220">
 	Version 3.0 - Feb 20, 2013</a>
-    <div id="collapseTwo" class="accordion-body collapse">
+    <div id="collapse20130220" class="accordion-body collapse">
       <div class="accordion-inner">
 <p>
 This new major release adds parallel log processing by using as many cores as wanted, the performances gain is directly related to the number of cores specified. There's also new reports about autovacuum/autoanalyze and many bugs have been fixed. No more needs to enable log_duration or log_min_duration log format all is handle in the same report at a time.
@@ -230,7 +233,12 @@ have been removed and pgbadger will refuse to start.
   </div>
 </div>
 
-<h3>Version 2.3 - Jan 17, 2013</h3>
+<div class="accordion-group">
+    <div class="accordion-heading">
+      <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion2" href="#collapse20130117">
+        Version 2.3 - Jan 17, 2013</a>
+    <div id="collapse20130117" class="accordion-body collapse">
+      <div class="accordion-inner">
 <p>
 This release fixes several major issues especially with csvlog and a memory leak
 with log parsing using a start date. There's also several improvement like new
@@ -317,8 +325,18 @@ Several SQL code beautifier improvement from pgFormatter have also been merged.
 	  Thanks to Marc Cousin for the patch.
 	- Replace Ctrl+M by printable \r. Thanks to Marc Cousin for the report.
 </pre>
+      </div>
+    </div>
+  </div>
+</div>
 
-<h3>Version 2.2 - Nov 13, 2012</h3>
+<div class="accordion-group">
+    <div class="accordion-heading">
+      <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion2" href="#collapse20121113">
+        Version 2.2 - Nov 13, 2012</a>
+    <div id="collapse20121113" class="accordion-body collapse">
+      <div class="accordion-inner">
+
 <p>
 This release add some major features like tsung output, speed improvement with
 csvlog, report of shut down events, new command line options to generate report
@@ -370,8 +388,18 @@ comments from queries. Lot of bug fixes, please upgrade.
 	- Fix wrong detection of update queries when a query has a object names
 	  containing update and set. Thanks to Vincent Laborie for the report.
 </pre>
+      </div>
+    </div>
+  </div>
+</div>
 
-<h3>Version 2.1 - Oct 12, 2012</h3>
+
+<div class="accordion-group">
+    <div class="accordion-heading">
+      <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion2" href="#collapse20121212">
+        Version 2.1 - Oct 12, 2012</a>
+    <div id="collapse20121212" class="accordion-body collapse">
+      <div class="accordion-inner">
 <p>
 This release adds a major feature by allowing any custom log_line_prefix to be
 used with pgBadger. An other feature is the support to log_duration instead
@@ -447,8 +475,17 @@ utilities.
 	  that are not errors.
 	- Allow pgbadger to recognize " autovacuum launcher" messages.
 </pre>
+      </div>
+    </div>
+  </div>
+</div>
 
-<h3>Version 2.0 - Aug 21, 2012</h3>
+<div class="accordion-group">
+    <div class="accordion-heading">
+      <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion2" href="#collapse20120820">
+        Version 2.0 - Aug 20, 2012</a>
+    <div id="collapse20120820" class="accordion-body collapse">
+      <div class="accordion-inner">
 <p>
 This major version adds support for incremental runs to avoid computing statistics on old data and an SQL format beautifier on each reported query. The CSV log parser has been entirely rewritten.
 </p>
@@ -458,174 +495,239 @@ This major version adds some changes not backward compatible with previous versi
 The obsolete -l option use to specify the log file to parse has been reused to specify an
 incremental file. Outside these changes and some bug fix there's also new features:
 
-    * Using an incremental file with -l option allow to parse multiple time a single log file
-      and to "seek" at the last line parsed during the previous run. Useful if you have a log
-      rotation not sync with your pgbadger run. For exemple you can run somthing like this:
+* Using an incremental file with -l option allow to parse multiple time a single log file
+and to "seek" at the last line parsed during the previous run. Useful if you have a log
+rotation not sync with your pgbadger run. For exemple you can run somthing like this:
 
-        pgbadger `find /var/log/postgresql/ -name "postgresql*" -mtime -7 -type f` \
-            -o report_`date +%F`.html -l /var/run/pgbadger/last_run.log
+pgbadger `find /var/log/postgresql/ -name "postgresql*" -mtime -7 -type f` \
+-o report_`date +%F`.html -l /var/run/pgbadger/last_run.log
 
-    * All queries displayed in the HTML report are now clickable to display or hide a nice 
-      SQL query format. This is called SQL format beautifier.
+* All queries displayed in the HTML report are now clickable to display or hide a nice 
+SQL query format. This is called SQL format beautifier.
 
-    * CSV log parser have been entirely rewritten to handle csv with multiline.
+* CSV log parser have been entirely rewritten to handle csv with multiline.
 
 Every one should upgrade.
 
-        - Change license from BSD like to PostgreSQL license. Request from Robert Treat.
-        - Fix wrong pointer on Connections per host menu. Reported by Jean-Paul Argudo.
-        - Change license from BSD like to PostgreSQL license. Request from Robert Treat.
-        - Fix wrong pointer on Connections per host menu. Reported by Jean-Paul Argudo.
-        - Small fix for sql formatting adding scrollbars. Patch by Julien Rouhaud.
-        - Add SQL format beautifier on SQL queries. When you will click on a query it
-          will be beautified. Patch by Gilles Darold
-        - The progress bar is now enabled by default, the -p option has been removed.
-          Use -q | --quiet to disable it. Patch by Gilles Darold
-        - Graphs are now generated by default for HTML output, option -g as been remove
-          and option -G added to allow disabling graph generation. Request from Julien
-          Rouhaud, patch by Gilles Darold.
-        - Remove option -g and -p to the documentation. Patch by Gilles Darold.
-        - Fix case sensitivity in command line options. Patch by Julien Rouhaud.
-        - Add -T|--title option to change report title. Patch by Yury Bushmelev.
-        - Add new option --exclude-file to exclude specific commands with regex stated
-          in a file. This is a rewrite by Gilles Darold of the neoeahit (Vipul) patch.
-        - CSV log parser have been entirely rewritten to handle csv with multiline, it
-          also adds approximative duration for csvlog. Reported by Ludhimila Kendrick,
-          patch by Gilles Darold.
-        - Alphabetical reordering of options list in method usage() and documentation.
-          Patch by Gilles Darold.
-        - Remove obsolete -l | --logfile command line option, the -l option will be reused
-          to specify an incremental file. Patch by Gilles Darold.
-        - Add -l | --last-parsed options to allow incremental run of pgbadger. Patch
-          by Gilles Darold.
-        - Replace call to timelocal_nocheck by timegm_nocheck, to convert date/time into
-          second from the epoch. This should fix timezone issue. Patch by Gilles Darold.
-        - Change regex on log parser to allow missing ending space in log_line_prefix.
-        - This seems a common mistake. Patch by Gilles Darold.
-        - print a warning when an empty log file is found. Patch by Gilles Darold.
-        - Add perltidy rc file to format pgbadger Perl code. Patch from depesz.
+- Change license from BSD like to PostgreSQL license. Request from Robert Treat.
+- Fix wrong pointer on Connections per host menu. Reported by Jean-Paul Argudo.
+- Change license from BSD like to PostgreSQL license. Request from Robert Treat.
+- Fix wrong pointer on Connections per host menu. Reported by Jean-Paul Argudo.
+- Small fix for sql formatting adding scrollbars. Patch by Julien Rouhaud.
+- Add SQL format beautifier on SQL queries. When you will click on a query it
+will be beautified. Patch by Gilles Darold
+- The progress bar is now enabled by default, the -p option has been removed.
+Use -q | --quiet to disable it. Patch by Gilles Darold
+- Graphs are now generated by default for HTML output, option -g as been remove
+and option -G added to allow disabling graph generation. Request from Julien
+Rouhaud, patch by Gilles Darold.
+- Remove option -g and -p to the documentation. Patch by Gilles Darold.
+- Fix case sensitivity in command line options. Patch by Julien Rouhaud.
+- Add -T|--title option to change report title. Patch by Yury Bushmelev.
+- Add new option --exclude-file to exclude specific commands with regex stated
+in a file. This is a rewrite by Gilles Darold of the neoeahit (Vipul) patch.
+- CSV log parser have been entirely rewritten to handle csv with multiline, it
+also adds approximative duration for csvlog. Reported by Ludhimila Kendrick,
+patch by Gilles Darold.
+- Alphabetical reordering of options list in method usage() and documentation.
+Patch by Gilles Darold.
+- Remove obsolete -l | --logfile command line option, the -l option will be reused
+to specify an incremental file. Patch by Gilles Darold.
+- Add -l | --last-parsed options to allow incremental run of pgbadger. Patch
+by Gilles Darold.
+- Replace call to timelocal_nocheck by timegm_nocheck, to convert date/time into
+second from the epoch. This should fix timezone issue. Patch by Gilles Darold.
+- Change regex on log parser to allow missing ending space in log_line_prefix.
+- This seems a common mistake. Patch by Gilles Darold.
+- print a warning when an empty log file is found. Patch by Gilles Darold.
+- Add perltidy rc file to format pgbadger Perl code. Patch from depesz.
 </pre>
 
-<h3>Version 1.2 - Jul 15, 2012</h3>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="accordion-group">
+    <div class="accordion-heading">
+      <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion2" href="#collapse20120715">
+        Version 1.2 - Jul 15, 2012</a>
+    <div id="collapse20120715" class="accordion-body collapse">
+      <div class="accordion-inner">
 <p>
 This release adds some new report, fixes a major issue on the log parser and some minor bugs. Please upgrade asap, here is the complete change log:
 </p>
 <pre>
-        - Add -v | --verbose to enable debug mode. It is now disable by default
-        - Add hourly report of checkpoint warning when checkpoints are occuring too frequently, it will display the hourly count and
-	  the average occuring time.
-        - Add new report that sums the messages by log types. The report shows the number of messages of each log type, and a percentage.
-	  It also displays a pie graph. Patch by Guillaume Lelarge.
-        - Add missing pie graph on locks by type report.
-        - Format pie mouse track to display values only.
-        - Fix graph download button id on new connection graph.
-        - Add trackFormatter to flotr2 line graphs to show current x/y values.
-        - Fix issue on per minute minimum value.
-        - Add a note about Windows Os and zcat as well as a more general note about using compressed log file in other format than gzip.
-        - Complete rewrite of the log parser to handle unordered log lines. Data are now stored by pid before and added to the global
-	  statistics at end. Error report now include full details, statements, contexts and hints when available.
-	- Deadlock are also fully reported with the concerned queries.
-        - Fix miss handling of multi lines queries on syslog.
-        - Add -a|--average option to configure the per minutes average interval for queries and connexions. If you want the average
-	  to be calculated each minutes instead of the 5 per default, use --average 1 or for the default --average 5. If you want
-	  average per hour set it to 60.
-        - Add hourly statistics of connections and sessions as well as a chart about the number of connection per second (5 minutes average).
-        - Allow OTHERS type of queries lower than 2% to be include in the sum of types < 2%.
-        - Add autodetection of syslog ident name if different than the default "postgres" and that there is just one ident name in the log.
-        - Remove syslog replacement of tabulation by #011 still visible when there was multiple tabulation.
-        - Fix autodetection of log format syslog with single-digit day number in date.
-        - Add ChangeLog to MANIFEST and change URI in html footer.
-        - Check pgBadger compatibility with Windows Oses. Run perfectly.
+- Add -v | --verbose to enable debug mode. It is now disable by default
+- Add hourly report of checkpoint warning when checkpoints are occuring too frequently, it will display the hourly count and
+the average occuring time.
+- Add new report that sums the messages by log types. The report shows the number of messages of each log type, and a percentage.
+It also displays a pie graph. Patch by Guillaume Lelarge.
+- Add missing pie graph on locks by type report.
+- Format pie mouse track to display values only.
+- Fix graph download button id on new connection graph.
+- Add trackFormatter to flotr2 line graphs to show current x/y values.
+- Fix issue on per minute minimum value.
+- Add a note about Windows Os and zcat as well as a more general note about using compressed log file in other format than gzip.
+- Complete rewrite of the log parser to handle unordered log lines. Data are now stored by pid before and added to the global
+statistics at end. Error report now include full details, statements, contexts and hints when available.
+- Deadlock are also fully reported with the concerned queries.
+- Fix miss handling of multi lines queries on syslog.
+- Add -a|--average option to configure the per minutes average interval for queries and connexions. If you want the average
+to be calculated each minutes instead of the 5 per default, use --average 1 or for the default --average 5. If you want
+average per hour set it to 60.
+- Add hourly statistics of connections and sessions as well as a chart about the number of connection per second (5 minutes average).
+- Allow OTHERS type of queries lower than 2% to be include in the sum of types < 2%.
+- Add autodetection of syslog ident name if different than the default "postgres" and that there is just one ident name in the log.
+- Remove syslog replacement of tabulation by #011 still visible when there was multiple tabulation.
+- Fix autodetection of log format syslog with single-digit day number in date.
+- Add ChangeLog to MANIFEST and change URI in html footer.
+- Check pgBadger compatibility with Windows Oses. Run perfectly.
 </pre>
 
-<h3>Version 1.1 - Jul 04, 2012</h3>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="accordion-group">
+    <div class="accordion-heading">
+      <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion2" href="#collapse20130704">
+        Version 1.1 - Jul 04, 2012</a>
+    <div id="collapse20120704" class="accordion-body collapse">
+      <div class="accordion-inner">
 <p>
 This release fixes lot of issues and adds several main features.
 </p>
 <pre>
 New features:
 
-	- Add possibility to get log from stdin
-	- Change syslog parsing regex to allow log timestamp in log_line_prefix very often forgotten when log destination is changed
-	  from stderr to syslog.
-	- Add documentation for the -z | --zcat command line option.
-	- Allow `zcat` location to be specified via `--zcat` - David E. Wheeler
-	- Add --disable-session,--disable-connection and disable-checkpoint command line options to remove
-	  their respective reports from the output	
-	- Add --disable-query command line option to remove queries statistics from the output
-	- Add --disable-hourly command line option to remove hourly statistics from the output
-	- Add --disable-error command line option to remove error report from the output
-	- Add --exclude-query option to exclude types of queries by specifying a regex
-	- Set thousand separator and decimal separator to be locale dependant
-	- Add -w option to only report errors
-	- Add Makefile.PL and full POD documentation to the project
-	- Allow multiple log files from command line
-	- Add simple csvlog support - Alex Hunsaker
-	- Hourly report for temporary files and checkpoints have moved in a separate table.
-	- Add hourly connections and sessions statistics.
-	- Add a chart about the number of connections per seconds.
+- Add possibility to get log from stdin
+- Change syslog parsing regex to allow log timestamp in log_line_prefix very often forgotten when log destination is changed
+from stderr to syslog.
+- Add documentation for the -z | --zcat command line option.
+- Allow `zcat` location to be specified via `--zcat` - David E. Wheeler
+- Add --disable-session,--disable-connection and disable-checkpoint command line options to remove
+their respective reports from the output	
+- Add --disable-query command line option to remove queries statistics from the output
+- Add --disable-hourly command line option to remove hourly statistics from the output
+- Add --disable-error command line option to remove error report from the output
+- Add --exclude-query option to exclude types of queries by specifying a regex
+- Set thousand separator and decimal separator to be locale dependant
+- Add -w option to only report errors
+- Add Makefile.PL and full POD documentation to the project
+- Allow multiple log files from command line
+- Add simple csvlog support - Alex Hunsaker
+- Hourly report for temporary files and checkpoints have moved in a separate table.
+- Add hourly connections and sessions statistics.
+- Add a chart about the number of connections per seconds.
 
 Bug fix:
 
-	- Add information about log format requirement (lc_message = 'C') - Reported by Alain Benard.
-	- Fix for begin/end dates with single digit day using syslog - Patch by Joseph Marlin.
-	- Fix handle of syslog dates with single-digit day number - Patch by Denis Orlikhin.
-	- Fix many English syntax in error messages and documentation - Patch by Joseph Marlin.
-	- Fix non terminated TH html tag in checkpoint hourly table - Reported by Joseph Marlin.
-	- "Log file" section will now only report first and last log file parsed
-	- Fix empty output in hourly temporary file stats.
-	- Fix wrapping query that goes out of the table and makes the window scroll horizontally - Asked by Isaac Reuben.
-	- Fix code where != was replaced by $$CLASSSY0A$$!=$$CLASSSY0B$$ in the output. - Reported by Isaac Reuben
-	- Fix and review text report output.
-	- Fix an issue in SQL code highligh replacement.
-	- Complete review of the HTML output. 
-	- Add .gitignore for swap files - patch by Vincent Picavet
-	- Fix wrong variable for user and database filter - patch by Vincent Picavet.
-	- Change default regexp for user and db to be able to detect both - patch by Vincent Picavet.
-	- Fix false cur_date when using syslog and allow -b and -e options to work - patch by Vincent Picavet.
-	- Fix some case where log line where not detected as PostgreSQL log lines.
-	- Added explanation for --begin and --end datetime setting. And added -v / --version - Patch by ragged.
-	- Fix usage information and presentation in README file.
+- Add information about log format requirement (lc_message = 'C') - Reported by Alain Benard.
+- Fix for begin/end dates with single digit day using syslog - Patch by Joseph Marlin.
+- Fix handle of syslog dates with single-digit day number - Patch by Denis Orlikhin.
+- Fix many English syntax in error messages and documentation - Patch by Joseph Marlin.
+- Fix non terminated TH html tag in checkpoint hourly table - Reported by Joseph Marlin.
+- "Log file" section will now only report first and last log file parsed
+- Fix empty output in hourly temporary file stats.
+- Fix wrapping query that goes out of the table and makes the window scroll horizontally - Asked by Isaac Reuben.
+- Fix code where != was replaced by $$CLASSSY0A$$!=$$CLASSSY0B$$ in the output. - Reported by Isaac Reuben
+- Fix and review text report output.
+- Fix an issue in SQL code highligh replacement.
+- Complete review of the HTML output. 
+- Add .gitignore for swap files - patch by Vincent Picavet
+- Fix wrong variable for user and database filter - patch by Vincent Picavet.
+- Change default regexp for user and db to be able to detect both - patch by Vincent Picavet.
+- Fix false cur_date when using syslog and allow -b and -e options to work - patch by Vincent Picavet.
+- Fix some case where log line where not detected as PostgreSQL log lines.
+- Added explanation for --begin and --end datetime setting. And added -v / --version - Patch by ragged.
+- Fix usage information and presentation in README file.
 
 
 </pre>
 
-<h3>Version 1.0 - Jun 10, 2012</h3>
+
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="accordion-group">
+    <div class="accordion-heading">
+      <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion2" href="#collapse20120610">
+        Version 1.0 - Jun 10, 2012</a>
+    <div id="collapse20120610" class="accordion-body collapse">
+      <div class="accordion-inner">
 <p>
 First release of pgBadger published on GitHub.com
 </p>
+      </div>
+    </div>
+  </div>
+</div>
 
-<h3>Official web site - Jun 10, 2012</h3>
+<div class="accordion-group">
+    <div class="accordion-heading">
+      <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion2" href="#collapse20120610b">
+        Official web site - Jun 10, 2012</a>
+    <div id="collapse20120610b" class="accordion-body collapse">
+      <div class="accordion-inner">
 <p>
-pgBadger have is own dedicated web site now !
+pgBadger has its own dedicated web site now !
 </p>
-<h3>PGCon 2012, Ottawa - May 17, 2012</h3>
+
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="accordion-group">
+    <div class="accordion-heading">
+      <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion2" href="#collapse20120517">
+        PGCon 2012, Ottawa - May 17, 2012</a>
+    <div id="collapse20120517" class="accordion-body collapse">
+      <div class="accordion-inner">
 <p>
 Lightning talk about pgBadger, by Gilles Darold. <a href="http://www.dalibo.org/lightning_talk_sur_pgbadger" target="_new">Download</a>
 </p>
-<h3>GitHub - Apr 12, 2012</h3>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="accordion-group">
+    <div class="accordion-heading">
+      <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion2" href="#collapse20120412">
+        GitHub - Apr 12, 2012</a>
+    <div id="collapse20120412" class="accordion-body collapse">
+      <div class="accordion-inner">
 <p>
 Creation of the <a href="https://github.com/dalibo/pgbadger">dalibo/pgbadger repository</a>.
 </p>
+      </div>
+    </div>
+  </div>
+</div>
 
 
 <!-- end of News -->
 
 <h2 id="quotes">Quotes</h2>
-   <div id="myCarousel" class="carousel slide">
-  <ol class="carousel-indicators">
-    <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
-    <li data-target="#myCarousel" data-slide-to="1"></li>
-    <li data-target="#myCarousel" data-slide-to="2"></li>
-  </ol>
-  <!-- Carousel items -->
-  <div class="carousel-inner">
-    <div class="active item">
-         <img src="http://blog.taadeem.net/public/pgbadger_proto_2.png" alt="">
-          <div class="carousel-caption">
-                      <h4>Christophe Pettus, from PostgreSQL Experts</h4>
-                      <p>"It’s written in Perl, at least as fast as pgfouine, and can process log files that pgfouine can’t handle. It can read either CSV or standard log format, and can directly read *.gz files. It also produces a wider range of reports that pgfouine, including some very useful locking reports. I threw 25GB of logs with near 80 million lines at it without it complaining</p>
-                    </div>
+<div id="myCarousel" class="carousel slide">
+<ol class="carousel-indicators">
+<li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+<li data-target="#myCarousel" data-slide-to="1"></li>
+<li data-target="#myCarousel" data-slide-to="2"></li>
+</ol>
+<!-- Carousel items -->
+<div class="carousel-inner">
+<div class="active item">
+<img src="http://blog.taadeem.net/public/pgbadger_proto_2.png" alt="">
+<div class="carousel-caption">
+<h4>Christophe Pettus, from PostgreSQL Experts</h4>
+<p>"It’s written in Perl, at least as fast as pgfouine, and can process log files that pgfouine can’t handle. It can read either CSV or standard log format, and can directly read *.gz files. It also produces a wider range of reports that pgfouine, including some very useful locking reports. I threw 25GB of logs with near 80 million lines at it without it complaining</p>
+</div>
     </div>
     <div class="item">
          <img src="http://blog.taadeem.net/public/pgbadger_proto_2.png" alt="">

@@ -6192,10 +6192,21 @@ a.badge:focus {
 .powered {
     top:300px;
     width: 19%;
+    text-align: center;	
 }
 
+.powered h4 {
+     margin-top: 0;    
+}
+
+
 .twitter {
-    top:420px;
+    top:450px;
     width: 19%;
+    text-align: center;
+}
+
+.twitter h4 {
+     margin-top: 0;
 }
 
